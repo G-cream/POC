@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gali.thymeleaf.mapper.StudentMapper">
+
+    <select id="findAll"  resultType="java.util.Map">
+        select * from student
+    </select>
+
+    <select id="findAll2"  resultType="java.util.Map" parameterType="Integer">
+        select * from student where id > #{id}
+    </select>
+
+
+
+
+    <delete id="delById" parameterType="Integer">
+        delete  from student  where id = #{user_id}
+    </delete>
+
+    <select id="findById" parameterType="Integer" resultType="com.gali.thymeleaf.entity.Student">
+        select * from student where id= #{id}
+    </select>
+
+    <insert id="create" parameterType="com.gali.thymeleaf.entity.Student">
+
+        insert into   student ( name,age)
+        values (#{name},#{age})
+        <!-- selectKEY 用于回填数据 keyProperty 主键  keycolume是字段名  resultType 是字段类型 order 是指定在执行sql前或后返回数据-->
+        <selectKey keyProperty="id" keyColumn="id" resultType="Integer" order="AFTER">
+            select Last_INSERT_ID()
+        </selectKey>
+
+    </insert>
+
+    <update id="update" parameterType="com.gali.thymeleaf.entity.Student">
+
+     update  student set name = #{name} ,  age= #{age} where id= #{id}
+
+    </update>
+
+
+</mapper>

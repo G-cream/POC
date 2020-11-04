@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑客户</title>
+</head>
+<body>
+<form th:action="@{/save}" method="post">
+
+    <div>
+        <label>id</label>
+        <input type="text" name="id" readonly="readonly" th:field="${student.id}" />
+    </div>
+    <div>
+        <label>name</label>
+        <input type="text" name="name" th:field="${student.name}" />
+    </div>
+    <div>
+        <label>age</label>
+        <input type="text" name="age" th:field="${student.age}" />
+    </div>
+
+    <div>
+        <input type="submit" value="提交" />
+    </div>
+</form>
+</body>
+</html>
